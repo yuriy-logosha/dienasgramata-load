@@ -1,0 +1,13 @@
+{
+  "logging.name": "dienasgramata-load",
+  "logging.format": "%(asctime)-15s %(levelname)s %(message)s",
+  "logging.file": "dienasgramata-load.log",
+  "logging.level": 20,
+  "eklase.username": "",
+  "eklase.password": "",
+  "url": "https://my.e-klase.lv",
+  "dienasgramata.resources.path": "dienasgramata/",
+  "dienasgramata.index.name": "dienasgramata.html",
+  "restart": 0,
+  "version": "0.1b"
+}
