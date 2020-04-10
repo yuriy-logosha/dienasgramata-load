@@ -51,6 +51,9 @@ class VladsTimesheetResultsHTML:
     def prepare(self):
         doc = html.document_fromstring(self.text)
 
+        for meta in doc.xpath("//meta[@http-equiv='refresh']"):
+            self.text = self.text.replace(meta.attrib['content'], "")
+
         links = doc.xpath("//head/link[@rel='stylesheet']")
         for link in links:
             try:
@@ -101,11 +104,14 @@ def dienasgramata(*args):
 logger.info("Starting " + config['logging.name'])
 while True:
 
-    dg = dienasgramata()
-    dg.prepare()
-    dest = resources_path + config['dienasgramata.index.name']
-    logger.info("Exporting to: %s and index: %s", resources_path, dest)
-    to_file(dest, dg.text)
+    try:
+        dg = dienasgramata()
+        dg.prepare()
+        dest = resources_path + config['dienasgramata.index.name']
+        logger.info("Exporting to: %s and index: %s", resources_path, dest)
+        to_file(dest, dg.text)
+    except Exception as e:
+        logger.error(e)
 
     if 'restart' in config and config['restart'] > 0:
         logger.info("Waiting %s seconds.", config['restart'])
