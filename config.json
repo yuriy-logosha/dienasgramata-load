@@ -8,6 +8,6 @@
   "url": "https://my.e-klase.lv",
   "dienasgramata.resources.path": "dienasgramata/",
   "dienasgramata.index.name": "dienasgramata.html",
-  "restart": 0,
+  "restart": 900,
   "version": "0.1b"
 }
