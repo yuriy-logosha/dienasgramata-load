@@ -48,6 +48,7 @@ class VladsTimesheetResultsHTML:
     def prepare(self):
         doc = html.document_fromstring(self.text)
 
+        # TODO: Add files cleanup.
         for meta in doc.xpath("//meta[@http-equiv='refresh']"):
             self.text = self.text.replace(meta.attrib['content'], "")
 
@@ -111,7 +112,6 @@ def check_folder(path):
 
 logger.info("Starting " + config['logging.name'])
 while True:
-
     try:
         rss_path = check_folder(config['page1.resources.path'])
         dest = rss_path + config['page1.html.name']
