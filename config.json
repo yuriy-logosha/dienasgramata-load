@@ -16,11 +16,6 @@
       "resources.path": "dienasgramata-next/",
       "html.name": "dienasgramata.html",
       "days": 10
-    },
-    {
-      "resources.path": "dienasgramata-prev/",
-      "html.name": "dienasgramata.html",
-      "days": -4
     }
   ],
   "restart": 900
