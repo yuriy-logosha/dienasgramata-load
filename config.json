@@ -6,8 +6,9 @@
   "eklase.username": "",
   "eklase.password": "",
   "url": "https://my.e-klase.lv",
-  "dienasgramata.resources.path": "dienasgramata/",
-  "dienasgramata.index.name": "dienasgramata.html",
-  "restart": 900,
-  "version": "0.1b"
+  "page1.resources.path": "dienasgramata/",
+  "page1.html.name": "dienasgramata.html",
+  "page2.resources.path": "dienasgramata-next/",
+  "page2.html.name": "dienasgramata.html",
+  "restart": 900
 }
