@@ -113,15 +113,12 @@ def check_folder(path):
 logger.info("Starting " + config['logging.name'])
 while True:
     try:
-        rss_path = check_folder(config['page1.resources.path'])
-        dest = rss_path + config['page1.html.name']
-        logger.info("Exporting to: %s and index: %s", rss_path, dest)
-        to_file(dest, dienasgramata(3, rss_path).prepare())
+        for page in config["pages"]:
+            rss_path = check_folder(page['resources.path'])
+            dest = rss_path + page['html.name']
+            logger.info("Exporting to: %s and index: %s", rss_path, dest)
+            to_file(dest, dienasgramata(page['days'], rss_path).prepare())
 
-        rss_path = check_folder(config['page2.resources.path'])
-        dest = rss_path + config['page2.html.name']
-        logger.info("Exporting to: %s and index: %s", rss_path, dest)
-        to_file(dest, dienasgramata(10, rss_path).prepare())
     except Exception as e:
         logger.error(e)
 

@@ -6,9 +6,22 @@
   "eklase.username": "",
   "eklase.password": "",
   "url": "https://my.e-klase.lv",
-  "page1.resources.path": "dienasgramata/",
-  "page1.html.name": "dienasgramata.html",
-  "page2.resources.path": "dienasgramata-next/",
-  "page2.html.name": "dienasgramata.html",
+  "pages": [
+    {
+      "resources.path": "dienasgramata/",
+      "html.name": "dienasgramata.html",
+      "days": 3
+    },
+    {
+      "resources.path": "dienasgramata-next/",
+      "html.name": "dienasgramata.html",
+      "days": 10
+    },
+    {
+      "resources.path": "dienasgramata-prev/",
+      "html.name": "dienasgramata.html",
+      "days": -4
+    }
+  ],
   "restart": 900
 }
