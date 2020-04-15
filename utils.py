@@ -404,6 +404,7 @@ def json_from_file(file_name, err_msg=None):
         raise Exception(err_msg if err_msg else "No data loaded.")
     return data
 
+
 def json_to_file(file_name, data):
     to_file(file_name, json.dumps(data, ensure_ascii=False, indent=2))
 
@@ -440,11 +441,8 @@ def _gete(url, params=None, session=None, *args, **kwargs):
         r = session.get(url)
     else:
         r = requests.get(url, params, args)
-    timestamp = datetime.now().strftime('%Y%m%d %H %M %S %f')[:-3]
-    name = "requests/%s-get" % timestamp
-    logger.info("%s %s" % (url, params))
-    # to_file(name + ".html", r.text)
-    return r, name + ".html"
+    logger.info("%s %s %s" % (url, r, params))
+    return r
 
 
 def _poste(url, params, headers, session=None, *args, **kwargs):
@@ -453,24 +451,9 @@ def _poste(url, params, headers, session=None, *args, **kwargs):
     else:
         session = requests.Session()
         r = session.post(url, params, *args)
-    timestamp = datetime.now().strftime('%Y%m%d %H %M %S %f')[:-3]
-    name = "requests/%s-post" % timestamp
     logger.info("%s %s" % (url, params))
-    # to_file(name + ".html", r.text)
     return r, session
 
-
-def google_geocode(address, components='locality:riga|country:LV', language='ru', key=''):
-    response = requests.get(f'https://maps.googleapis.com/maps/api/geocode/json?address={address}&components={components}&language={language}&key={key}')
-    if not response.ok:
-        raise GoogleError(response.reason)
-    else:
-        body = response.json()
-        if 'status' in body:
-            if body['status'] in ['OK', 'ZERO_RESULTS']:
-                return body['results']
-            else:
-                raise GoogleError(body['status'], body['error_message'])
 
 
 
