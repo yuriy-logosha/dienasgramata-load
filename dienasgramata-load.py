@@ -125,6 +125,7 @@ while True:
 
     if 'restart' in config and config['restart'] > 0:
         logger.info("Waiting %s seconds.", config['restart'])
+        session = None
         time.sleep(config['restart'])
     else:
         exit()
