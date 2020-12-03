@@ -51,6 +51,27 @@ class VladsTimesheetResultsHTML:
         for meta in doc.xpath("//meta[@http-equiv='refresh']"):
             self.text = self.text.replace(meta.attrib['content'], "")
 
+        # body
+        self.text = self.text.replace("<body>", "<body><div>Updated %s</div>" % time.strftime("%H:%M:%S %d.%m.%Y"))
+
+        # header
+        self.text = self.text.replace("<header>", "<header style=\"display:none\">")
+
+        # students-journal-header
+        self.text = self.text.replace("students-journal-header", "students-journal-header hidden")
+
+        # students-journal-header-links hidden-xs
+        self.text = self.text.replace("students-journal-header-links", "students-journal-header-links hidden")
+
+        # footer-nav
+        self.text = self.text.replace("class=\"footer-nav\"", "class=\"footer-nav hidden\"")
+
+        # copyright
+        self.text = self.text.replace("class=\"copyright\"", "class=\"copyright hidden\"")
+
+        # footer
+        self.text = self.text.replace("<footer>", "<footer style=\"display:none\">")
+
         links = doc.xpath("//head/link[@rel='stylesheet']")
         for link in links:
             try:
