@@ -13,6 +13,7 @@ import logging
 import requests
 import json
 import os
+import errno
 import xml.etree.ElementTree as ET
 
 
@@ -363,18 +364,17 @@ def sentence_analyze_matxin(sentence):
     return None
 
 
-# def nouns(arr):
-#     result = []
-#     for line in arr:
-#
-#     return None
-
-
 def to_file(file_name, text):
-    try:
-        os.remove(file_name)
-    except FileNotFoundError as e:
-        pass
+    # if not os.path.exists(os.path.dirname(file_name)):
+    #     try:
+    #         os.makedirs(os.path.dirname(file_name))
+    #     except OSError as exc:
+    #         if exc.errno != errno.EEXIST:
+    #             raise
+    # try:
+    #     os.remove(file_name)
+    # except FileNotFoundError as e:
+    #     pass
 
     if isinstance(text, str):
         mode = 'wt'
@@ -437,10 +437,11 @@ def _get(url, params=None, session=None, *args, **kwargs):
 
 
 def _gete(url, params=None, session=None, *args, **kwargs):
+    h = {'headers': 'user-agent:Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1'}
     if session:
-        r = session.get(url)
+        r = session.get(url, headers=h)
     else:
-        r = requests.get(url, params, args)
+        r = requests.get(url, params, args, headers=h)
     logger.info("%s %s %s" % (url, r, params))
     return r
 
